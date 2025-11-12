@@ -1,0 +1,37 @@
+---
+layout: default
+title: Home
+---
+
+<section class="hero">
+    <h1>Hello, I'm Your Name</h1>
+    <p class="subtitle">Developer, Designer, Creator</p>
+    <p class="intro">
+        Welcome to my corner of the internet. I write about technology,
+        design, and everything in between.
+    </p>
+</section>
+
+<section class="about">
+    <h2>About Me</h2>
+    <p>
+        I'm a passionate developer who loves building things for the web.
+        This is where I share my thoughts, projects, and learnings.
+    </p>
+</section>
+
+<section class="recent-posts">
+    <h2>Recent Posts</h2>
+    {% if site.posts.size > 0 %}
+    <ul class="post-list">
+        {% for post in site.posts limit:5 %}
+        <li>
+            <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No posts yet. Check back soon!</p>
+    {% endif %}
+</section>
