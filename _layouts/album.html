@@ -1,0 +1,75 @@
+---
+layout: default
+---
+
+<article class="album">
+    <a href="{{ '/photos' | relative_url }}" class="back-link">&larr; Back to Albums</a>
+
+    <header class="album-header">
+        <h1>{{ page.title }}</h1>
+        {% if page.description %}
+        <p class="album-description-full">{{ page.description }}</p>
+        {% endif %}
+    </header>
+
+    <div class="gallery">
+        {% for photo in page.photos %}
+        <div class="gallery-item">
+            <img src="{{ photo.src }}" alt="{{ photo.caption }}" class="gallery-image">
+            {% if photo.caption %}
+            <div class="gallery-caption">{{ photo.caption }}</div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</article>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="">
+    <div class="lightbox-caption"></div>
+</div>
+
+<script>
+    // Lightbox functionality for album gallery images
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+    const lightboxClose = lightbox.querySelector('.lightbox-close');
+    const gallery = document.querySelector('.gallery');
+
+    if (gallery) {
+        const images = gallery.querySelectorAll('.gallery-image');
+        images.forEach(img => {
+            // Add click handler for lightbox
+            img.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+
+                // Get the caption from the sibling element
+                const captionElement = img.parentElement.querySelector('.gallery-caption');
+                lightboxCaption.textContent = captionElement ? captionElement.textContent : img.alt || '';
+
+                document.body.style.overflow = 'hidden';
+            });
+        });
+    }
+
+    // Close lightbox when clicking background, image, or close button
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target === lightboxClose || e.target === lightboxImg) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+</script>

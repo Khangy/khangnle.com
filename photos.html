@@ -1,0 +1,26 @@
+---
+layout: default
+title: Photos
+---
+
+<section class="photos-section">
+    <h1>Photography</h1>
+    <p class="photos-intro">A collection of moments I've captured through my lens.</p>
+
+    <div class="albums-grid">
+        {% for album in site.data.albums %}
+        <a href="{{ '/albums/' | append: album.slug | relative_url }}" class="album-card">
+            <div class="album-cover">
+                <img src="{{ album.cover }}" alt="{{ album.title }}" class="album-cover-image">
+                <div class="album-overlay">
+                    <span class="view-album">View Album</span>
+                </div>
+            </div>
+            <div class="album-info">
+                <h3 class="album-title">{{ album.title }}</h3>
+                <p class="album-description">{{ album.description }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>

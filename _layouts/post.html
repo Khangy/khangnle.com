@@ -30,3 +30,58 @@ layout: default
     </a>
     {% endif %}
 </nav>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="">
+    <div class="lightbox-caption"></div>
+</div>
+
+<script>
+    // Lightbox functionality for blog post images
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+    const lightboxClose = lightbox.querySelector('.lightbox-close');
+    const postContent = document.querySelector('.post-content');
+
+    // Add captions below images in post content
+    if (postContent) {
+        const images = postContent.querySelectorAll('img');
+        images.forEach(img => {
+            // Add caption below image
+            if (img.alt) {
+                const caption = document.createElement('div');
+                caption.className = 'image-caption';
+                caption.textContent = img.alt;
+                img.parentNode.insertBefore(caption, img.nextSibling);
+            }
+
+            // Add click handler for lightbox
+            img.addEventListener('click', () => {
+                lightbox.classList.add('active');
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightboxCaption.textContent = img.alt || '';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+    }
+
+    // Close lightbox when clicking background, image, or close button
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox || e.target === lightboxClose || e.target === lightboxImg) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+</script>

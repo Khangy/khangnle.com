@@ -4,31 +4,36 @@ title: Home
 ---
 
 <section class="hero">
-    <h1>Khang Le</h1>
-    <p class="subtitle">Developer, Photographer, Life-Enjoyer</p>
-</section>
+    <div class="hero-content">
+        <h1>Khang Le</h1>
+        <p class="subtitle">Developer, Photographer, Life-Enjoyer</p>
 
-<section class="about">
-    <h2>About Me</h2>
-    <p>
-        I'm a Software Engineer based out of Chandler, Arizona. 
-        This is where I share parts of my life with the rest of the 
-        Internet.
-    </p>
-</section>
+        <div class="about">
+            <h2>About Me</h2>
+            <p>
+                I'm a Software Engineer based out of Chandler, Arizona.
+                This is where I want to share parts of my life with the rest of the
+                Internet.
+            </p>
+        </div>
 
-<section class="recent-posts">
-    <h2>Recent Posts</h2>
-    {% if site.posts.size > 0 %}
-    <ul class="post-list">
-        {% for post in site.posts limit:5 %}
-        <li>
-            <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <p>No posts yet. Check back soon!</p>
-    {% endif %}
+        <div class="recent-posts">
+            <h2>Recent Posts</h2>
+            {% if site.posts.size > 0 %}
+            <ul class="post-list">
+                {% for post in site.posts limit:5 %}
+                <li>
+                    <span class="post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No posts yet. Check back soon!</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="hero-photo">
+        <img src="/assets/images/profile/profile.jpg" alt="Khang Le" class="profile-photo">
+    </div>
 </section>
