@@ -15,7 +15,7 @@ layout: default
     <div class="gallery">
         {% for photo in page.photos %}
         <div class="gallery-item">
-            <img src="{{ photo.src }}" alt="{{ photo.caption }}" class="gallery-image">
+            <img src="{{ photo.src }}" alt="{{ photo.caption }}" class="gallery-image" loading="lazy" decoding="async">
             {% if photo.caption %}
             <div class="gallery-caption">{{ photo.caption }}</div>
             {% endif %}

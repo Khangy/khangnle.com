@@ -50,6 +50,10 @@ layout: default
     if (postContent) {
         const images = postContent.querySelectorAll('img');
         images.forEach(img => {
+            // Add lazy loading attributes
+            img.setAttribute('loading', 'lazy');
+            img.setAttribute('decoding', 'async');
+
             // Add caption below image
             if (img.alt) {
                 const caption = document.createElement('div');

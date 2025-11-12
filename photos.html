@@ -11,7 +11,7 @@ title: Photos
         {% for album in site.data.albums %}
         <a href="{{ '/albums/' | append: album.slug | relative_url }}" class="album-card">
             <div class="album-cover">
-                <img src="{{ album.cover }}" alt="{{ album.title }}" class="album-cover-image">
+                <img src="{{ album.cover }}" alt="{{ album.title }}" class="album-cover-image" loading="lazy" decoding="async">
                 <div class="album-overlay">
                     <span class="view-album">View Album</span>
                 </div>
