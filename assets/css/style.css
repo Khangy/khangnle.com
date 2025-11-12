@@ -411,6 +411,14 @@ footer {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    background: linear-gradient(110deg, var(--light-gray) 8%, #f0f0f0 18%, var(--light-gray) 33%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.album-cover-image[src] {
+    animation: none;
+    background: none;
 }
 
 .album-card:hover .album-cover-image {
@@ -533,10 +541,27 @@ footer {
     cursor: zoom-in;
     display: block;
     transition: opacity 0.3s ease;
+    background: linear-gradient(110deg, var(--light-gray) 8%, #f0f0f0 18%, var(--light-gray) 33%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+.gallery-image[src] {
+    animation: none;
+    background: none;
 }
 
 .gallery-image:hover {
     opacity: 0.9;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
 }
 
 .gallery-caption {
